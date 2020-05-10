@@ -27,9 +27,9 @@ pipeline {
 
 		stage('Set current kubectl context') {
 			steps {
-				withAWS(region:'us-east-1', credentials:'ecr_credentials') {
+				withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-user']]) {
 					sh '''
-						kubectl config use-context arn:aws:eks:us-east-1:142977788479:cluster/capstonecluster
+						kubectl config use-context arn:aws:eks:us-west-2:565836625953:cluster/udacityclusternd
 					'''
 				}
 			}
